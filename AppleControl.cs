@@ -12,8 +12,14 @@ public class AppleControl : MonoBehaviour
         Color.magenta,
         new Color(0.5f,0f,0.5f),
     };
+
+    private int colorIndex=0;
     void OnTriggerEnter2D(Collider2D other)
     {
+        SpriteRenderer playSprite = other.GetComponent<SpriteRenderer>();
+        playSprite.color = myColor[colorIndex];
+        colorIndex=(colorIndex+1)%myColor.Length;
+
         float newX = Random.Range(-10,10);
         float newY = Random.Range(-4,4);
         transform.position = new Vector3(newX,newY,0);
